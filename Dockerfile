@@ -2,7 +2,7 @@
 FROM centos:latest
 
 # Prep
-RUN yum -y install nc net-tools nmap file tcpdump
+RUN yum -y install nc net-tools nmap file tcpdump unzip
 RUN adduser -u 1000 -g 10 centos
 RUN adduser -u 1010 -g 10 web
 WORKDIR /home/centos
@@ -37,7 +37,7 @@ COPY flag_http /tmp/.flag_http
 # 11 - NOOP - Python script
 
 # 12
-ADD oddfile oddfile
+ADD oddfile.zip oddfile.zip
 
 # 14
 ADD flag.dmp flag.dmp

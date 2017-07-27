@@ -1,4 +1,4 @@
-# KiddoCTF
+# KiddoCTF - a Docker Linux-based intro to CTFs (Capture The Flag challenges)
 
 ## Introduction & Audience
 
@@ -12,16 +12,44 @@ Some of the challenges have extra practice commands to help the student learn mo
 
 Spoil Alert: The flags are all in the Dockerfile so don't let the student see that first!
 
+## Usage
 
-## DOCKER LINUX CTF
+#### Build it yourself
+    git clone https://github.com/IPvFletch/KiddoCTF.git
+    cd KiddoCTF
+    docker build -t kiddoctf .
+
+#### Run [default: downloads from Docker Hub]
+    docker run --rm -ti kiddoctf:latest
+
+## Instructions [print out and provide to students]
+Flags will look like this: FLAGX_12345
+
+These commands will get you back where you started if you get lost in directories:
+
+    cd ~
+or
+
+    cd /home/centos
+
+Check your current dir:
+
+    pwd
+    ls -l
+
+If you see ` ` marks, it means the command to run is `inside` those marks.
+Do not type the ` ` characters when you run the command.
+
+## Challenges
 
 #### 01 linux i
-* find a file that is the flag
-* use `cd` and `ls` to reveal file flag
+* cd ~
+* find a file that is the flag hidden in some directory
+* use `ls -l` and cd <dirname>` to find the filename flag
 * practice: try `ls -l /home`
 
 #### 02 linux ii
-* cd ~/ (homedir)
+* cd ~
 * use `ls --help` to find the hidden .dir directory(s)
 * `cat file` reveals the flag
 * practice: try `cat /etc/passwd` or `cat /etc/shadow`
@@ -52,15 +80,39 @@ Spoil Alert: The flags are all in the Dockerfile so don't let the student see th
 * hint: look at /etc/group
 
 #### 07 linux vi
-* look in the www user's files to find the flag
+* look in the ~www user's homedir to find the flag
 * use `ls -l` to see dir/file permissions
+* the owner/group are listed here
+
+For example, this file is owned by user kfletcher and has group admin
+
+    drwxr-xr-x 1 kfletcher admin 4096 Jul 27 16:20 KiddoCTF
+
+The letters on the left also mean something
 ```
-    drwxr-xr-x => r = read, w = write, x = exec/cd
-    the first 1 bit is for if it's a directory
-    the next 3 bits are the owner's permissions
-    the next 3 bits are the group's permissions
-    the last 3 bits are everyone else's permissions
+    d = directory or not
+    r = read
+    w = write
+    x = exec/cd
+    - = no permission
 ```
+
+Together they look like:
+```
+    -wx > no Read
+    r-x > no Write
+    rw- > no eXecute
+    r-- > no Write or eXecute
+```
+
+    -rw-r--r-- 1 root root 3812 Jul 27 16:31 flag.dmp
+    drwxr-xr-x 2 root root 4096 Jul 26 01:40 flag_dir
+    -rw-r--r-- 1 root root  177 Jul 26 01:12 oddfile
+
+* the first 1 bit is the directory bit
+* the next 3 bits are the Owner's permissions, rwx or not
+* the next 3 bits are the Group's permissions, rwx, or not
+* the last 3 bits are Everyone else's permissions, rwx or not
 
 #### 08 networking
 * find the routing table
@@ -69,52 +121,62 @@ Spoil Alert: The flags are all in the Dockerfile so don't let the student see th
 
 #### 09 visit a web service
 * `curl localhost:8080`
-* find an HTML comment containing the flag
+* find an HTML comment tag which contains the flag
+* https://www.w3schools.com/tags/
 
 #### 10 web site
 * `curl localhost:8080`
-* `curl --help` to find out how to display "headers"
 * look at the "cookies" being set by the server
+* `curl --help` to find out which option turns on "Include protocol headers"
+* Hint: The option you need is a single letter and rhymes with: Eye
 * b64 decoder reveals flag
 
 #### 11 run a python script
-* run python
+* run `python`
 * paste the below script line by line and let it run
 * find the `json` variable's `type` to reveal the flag
+* To exit Python, run the function `exit()`
 ```
 list = []
 list.append('a')
 list.append('b')
 json = {'a': 'ayyy', 'b': 'be cool man'}
 print json['a'] + ' ' + json['b']
+print type(json)
 print type(list)
 print list[1]
 print len(json)
-print type(json)
 ```
 
 #### 12 unknown filetype
+* cd ~
 * find out what kind of filetype `oddfile` is
 * `head -1 oddfile`
 * http://www.garykessler.net/library/file_sigs.html
 * or `file <file>`
-* unzip it to reveal the flag
+* `unzip` and `cat` it to reveal the flag
 
 #### 13 nmap to find a [local] hidden port
 * `nmap localhost`
 * flag is the service name for the listener port beginning with 3
 
 #### 14 analyze a tcpdump
+* cd ~
 * examine the TCP Dump (Packet Capture) and find the flag
 * `tcpdump -r flag.dmp`
 * use the `-n` flag to not resolve hostnames
 * use `-A` to display the data trasnferred
 * look for the flag data being sent > 216.58.218.142.80
+* if you can't scroll back add `| more` to the very end of your tcpdump command
+* press `[SPACEBAR]` to advance, or `q` to exit from `more`.
 
-# END
+# End
 
+### Optional Survey to get feedback
 
-### Related
+### Related Links
 * https://`thub.com/EasyCTF/writeups-2014/blob/master/045-linux-basics-4.md
 * https://jacobedelman.gitbooks.io/hsctf-3-practice-problems/content/
+
+Author/Maintainer: @IPvFletch
 
