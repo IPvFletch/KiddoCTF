@@ -175,7 +175,7 @@ print len(json)
 ### Optional Survey to get feedback
 
 ### Related Links
-* https://`thub.com/EasyCTF/writeups-2014/blob/master/045-linux-basics-4.md
+* https://github.com/EasyCTF/writeups-2014/blob/master/045-linux-basics-4.md
 * https://jacobedelman.gitbooks.io/hsctf-3-practice-problems/content/
 
 Author/Maintainer: @IPvFletch
