@@ -43,7 +43,6 @@ ADD oddfile oddfile
 ADD flag.dmp flag.dmp
 
 # User
-# TODO: Uncomment this!
 USER centos
 
 # Command
