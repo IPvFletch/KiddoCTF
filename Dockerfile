@@ -47,3 +47,6 @@ USER centos
 
 # Command
 CMD nc -lkp 31337 -c 'echo FLAG_11314' & nc -lkp 8080 -c 'cat /tmp/.flag_http' & bash
+
+# Ports
+EXPOSE 31337 8080
