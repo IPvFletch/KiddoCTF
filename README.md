@@ -42,15 +42,14 @@ Check your current dir:
     pwd
     ls -l
 
-If you see ` ` marks, it means the command to run is `inside` those marks.
-Do not type the ` ` characters when you run the command.
+Note: If you see ``` marks, it means the command to run is `inside` those marks. Do not type the ``` characters when you run the command.
 
 ## Challenges
 
 #### 01 linux i
 * cd ~
 * find a file that is the flag hidden in some directory
-* use `ls -l` and cd <dirname>` to find the filename flag
+* use `ls -l` and `cd <dirname>` to find the filename flag
 * practice: try `ls -l /home`
 
 #### 02 linux ii
