@@ -59,7 +59,7 @@ Note: If you see \` marks, it means the command to run is `inside` those marks. 
 * practice: try `cat /etc/passwd` or `cat /etc/shadow`
 
 #### 03 linux iii
-* run cat` or `strings` on /tmp/.flag3
+* run `cat` or `strings` on /tmp/.flag3
 * pipe the output (`|`) to grep, ex. `cat file | grep FLAG`
 * practice: try `cat /var/log/yum.log` to see what apps have been erased/installed
 
