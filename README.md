@@ -42,7 +42,7 @@ Check your current dir:
     pwd
     ls -l
 
-Note: If you see ``` marks, it means the command to run is `inside` those marks. Do not type the ``` characters when you run the command.
+Note: If you see \` marks, it means the command to run is `inside` those marks. Do not type the \` characters when you run the command.
 
 ## Challenges
 
