@@ -169,7 +169,7 @@ print len(json)
 * examine the TCP Dump (Packet Capture) and find the flag
 * `tcpdump -r flag.dmp`
 * use the `-n` flag to not resolve hostnames
-* use `-A` to display the data trasnferred
+* use `-A` to display the data transferred
 * look for the flag data being sent > 216.58.218.142.80
 * if you can't scroll back add `| more` to the very end of your tcpdump command
 * press `[SPACEBAR]` to advance, or `q` to exit from `more`.
