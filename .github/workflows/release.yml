@@ -1,0 +1,20 @@
+name: Package and Release
+# Publish a GitHub Release
+# Runs on semantic versioned tags only
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Release
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
