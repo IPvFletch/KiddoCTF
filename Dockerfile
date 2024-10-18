@@ -1,5 +1,5 @@
 # Base
-FROM centos:latest
+FROM rockylinux:8
 
 # Prep
 RUN yum -y install nc net-tools nmap file tcpdump unzip
@@ -37,7 +37,7 @@ COPY flag_http /tmp/.flag_http
 # 11 - NOOP - Python script
 
 # 12
-ADD oddfile.zip oddfile.zip
+ADD oddfile oddfile
 
 # 14
 ADD flag.dmp flag.dmp
